@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+    <snap>
+    <!-- Header -->
+    <header>
+        <h1>Mi Guía Docker</h1>
+    </header>
+
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pasos para imagen Hello world!</title>
+        <link rel="stylesheet" href="Style.css">
+    </head>
+
+    <body>
+        <img class="imagen001" src="https://assets.stickpng.com/thumbs/584bd19d2623fb7bc0d05886.png"width="80" height="80">
+        <img class="imagen002" src="https://assets.stickpng.com/thumbs/584bd19d2623fb7bc0d05886.png"width="80" height="80">
+        <ul>
+            <la><a href="#inicio">Inicio</a></la>
+            <la><a href="#servicios">Servicios</a></la>
+            <la><a href="#nosotros">Nosotros</a></la>
+            <la><a href="#contacto">Contacto</a></la>
+            <la><a href="#guerra">Guerra</a></la>
+        </ul>
+        <h2>Pasos para imagen Hello world!</h2>
+
+        <ol>
+            <li>Sirve para buscar la versión oficial de Ubuntu</li>
+            <code>docker search ubuntu</code>
+
+            <li>Descargar la versión que necesitemos</li>
+            <code>docker pull ubuntu</code>
+
+            <li>Ejecutar Ubuntu</li>
+            <code>docker run -it ubuntu</code>
+
+            <li>Lista de contenedores / -a para ver el historial</li>
+            <code>docker ps / docker ps -a</code>
+        </ol>
+
+        <h2>Pasos para descargar imagen NGINX y crear un sitio web</h2>
+
+        <ol>
+            <li>Descargar NGINX</li>
+            <code>docker pull nginx</code>
+
+            <li>Ejecutar NGINX</li>
+            <code>docker run -it nginx</code>
+
+            <li>Ejecutar NGINX en un puerto en específico -d (detach) sirve para apagar el log del contenedor</li>
+            <code>docker run -p 4000:80 -d nginx</code>
+
+            <li>Lista de contenedores / -a para ver el historial</li>
+            <code>docker ps / docker ps -a</code>
+
+            <li>Sirve para parar todos los contenedores. ¡ALERTA! Este comando detendrá todos los contenedores.</li>
+            <code>docker stop $(docker ps -aq)</code>
+
+            <li>Formato de salida (opcional)</li>
+            <code>docker ps --format="ID\t{{.ID}}\nNAME\t{{.Names}}\nPORT\t{{.Ports}}\nStatus\t{{.Status}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSize\t{{.Size}}\n"</code>
+
+            <li>Para copiar los archivos (Run as Administrator)</li>
+            <code>docker run -d -p 4000:80 --name website -v ${PWD}:/usr/share/nginx/html:ro -d nginx : tiene Read-only activado</code>
+            <code>docker run -d -p 4000:80 --name website -v ${PWD}:/usr/share/nginx/html -d nginx</code>
+        </ol>
+
+        <h2>Pasos para crear una imagen personalizada.</h2>
+
+        <ol>
+            <li>Generar una imagen desde un archivo DockerFile.</li>
+            <code>docker build -t luis-nginx .</code>
+
+            <li>Una vez que la imagen es creada ejecutar para desplegar el sitio web.</li>
+            <code>docker run -d -p 4000:80 --name chamacomalowebsite luis-nginx</code>
+        </ol>
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2023 Mi Guía Docker. Todos los derechos reservados.</p>
+        </footer>
+    </body>
+
+</html>
